@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MyCommunity Videos</title>
+  <link rel="stylesheet" href="videos.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to the Video Page</h1>
+    <p>Click on a video to watch and earn rewards.</p>
+    <div id="videoList">
+      <!-- Videos will be listed here -->
+    </div>
+    <a href="dashboard.html">Back to Dashboard</a>
+  </div>
+
+  <script>
+    // Example videos list (you'll change this later)
+    const videos = [
+      {
+        title: "Welcome to MyCommunity",
+        link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        description: "An introduction to our platform."
+      },
+      {
+        title: "How to Earn",
+        link: "https://www.youtube.com/watch?v=9bZkp7q19f0",
+        description: "Learn how rewards work."
+      }
+    ];
+
+    const videoList = document.getElementById("videoList");
+
+    videos.forEach(video => {
+      const div = document.createElement("div");
+      div.classList.add("video-item");
+
+      div.innerHTML = `
+        <h3>${video.title}</h3>
+        <p>${video.description}</p>
+        <a href="${video.link}" target="_blank">Watch Now</a>
+        <hr/>
+      `;
+
+      videoList.appendChild(div);
+    });
+  </script>
+</body>
+</html>

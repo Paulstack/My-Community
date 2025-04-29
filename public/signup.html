@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - My Community</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Sign Up</h2>
+    <form id="signup-form">
+      <input type="email" id="signup-email" placeholder="Email" required>
+      <div class="password-container">
+        <input type="password" id="signup-password" placeholder="Password" required>
+        <span id="toggle-signup-password" class="eye-icon">👁️</span>
+      </div>
+      <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="login.html">Login</a></p>
+  </div>
+
+  <!-- Firebase Initialization Script -->
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDsowrOH7Q4358dTO8sU23myADmvhcpkWU",
+    authDomain: "mycommunity-df8d5.firebaseapp.com",
+    projectId: "mycommunity-df8d5",
+    storageBucket: "mycommunity-df8d5.firebasestorage.app",
+    messagingSenderId: "282348817039",
+    appId: "1:282348817039:web:2a83dea003d26bf20abefa"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // Handle Sign-Up Form Submission
+  const signupForm = document.getElementById('signup-form');
+  signupForm.addEventListener('submit', async (e) => {
+    e.preventDefault(); // Prevent form from refreshing the page
+
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      alert('Sign-up successful! Welcome, ' + userCredential.user.email);
+      // Redirect to another page or perform additional actions
+    } catch (error) {
+      alert('Error: ' + error.message);
+    }
+  });
+
+  // Show/Hide Password
+  const toggleSignupPassword = document.getElementById('toggle-signup-password');
+  const signupPasswordInput = document.getElementById('signup-password');
+
+  if (toggleSignupPassword && signupPasswordInput) {
+    toggleSignupPassword.addEventListener('click', () => {
+      const type = signupPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      signupPasswordInput.setAttribute('type', type);
+
+      // Toggle the eye icon (optional)
+      toggleSignupPassword.textContent = type === 'password' ? '👁️' : '🙈';
+    });
+  }
+</script>
+</body>
+</html>
