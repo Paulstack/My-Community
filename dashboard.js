@@ -1,6 +1,20 @@
-// Import Firebase Auth and auth object
-import { auth } from './auth.js';
-import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAHsyZlAKYfiuqaG_nxR2EaixkorCBm1vY",
+  authDomain: "mycommunity-site.firebaseapp.com",
+  projectId: "mycommunity-site",
+  storageBucket: "mycommunity-site.firebasestorage.app",
+  messagingSenderId: "112022668246",
+  appId: "1:112022668246:web:b0043ac641161b04b91a77"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 // Wait for DOM to load
 document.addEventListener('DOMContentLoaded', () => {
