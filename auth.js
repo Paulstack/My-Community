@@ -4,12 +4,12 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
 
 // Initialize Firebase App
 const firebaseConfig = {
-  apiKey: "AIzaSyDsowrOH7Q4358dTO8sU23myADmvhcpkWU",
-  authDomain: "mycommunity-df8d5.firebaseapp.com",
-  projectId: "mycommunity-df8d5",
-  storageBucket: "mycommunity-df8d5.firebasestorage.app",
-  messagingSenderId: "282348817039",
-  appId: "1:282348817039:web:2a83dea003d26bf20abefa"
+  apiKey: "AIzaSyD_vEtmsv1CSgBKDUxEmf-l5lSgPSl38ys",
+  authDomain: "my-community-629c4.firebaseapp.com",
+  projectId: "my-community-629c4",
+  storageBucket: "my-community-629c4.firebasestorage.app",
+  messagingSenderId: "1087996148026",
+  appId: "1:1087996148026:web:c38e745fcd94a01ca8b803"
 };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
