@@ -26,7 +26,13 @@ if (signupForm) {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       window.location.href = "dashboard.html"; // Redirect to dashboard
     } catch (error) {
-      displayError(error.message); // Display error in the UI
+      const errorContainer = document.getElementById('error-container');
+      if (errorContainer) {
+        errorContainer.textContent = error.message;
+        errorContainer.style.color = 'red';
+      } else {
+        alert('Error: ' + error.message);
+      }
     }
   });
 }
@@ -43,7 +49,13 @@ if (loginForm) {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       window.location.href = "dashboard.html"; // Redirect to dashboard
     } catch (error) {
-      displayError(error.message); // Display error in the UI
+      const errorContainer = document.getElementById('error-container');
+      if (errorContainer) {
+        errorContainer.textContent = error.message;
+        errorContainer.style.color = 'red';
+      } else {
+        alert('Error: ' + error.message);
+      }
     }
   });
 }
@@ -56,7 +68,13 @@ if (logoutBtn) {
       await signOut(auth);
       window.location.href = "login.html"; // Redirect to login
     } catch (error) {
-      displayError(error.message); // Display error in the UI
+      const errorContainer = document.getElementById('error-container');
+      if (errorContainer) {
+        errorContainer.textContent = error.message;
+        errorContainer.style.color = 'red';
+      } else {
+        alert('Error: ' + error.message);
+      }
     }
   });
 }
@@ -77,7 +95,13 @@ if (forgotPasswordLink) {
       await sendPasswordResetEmail(auth, email);
       alert('Password reset email sent! Check your inbox.');
     } catch (error) {
-      alert('Error: ' + error.message);
+      const errorContainer = document.getElementById('error-container');
+      if (errorContainer) {
+        errorContainer.textContent = error.message;
+        errorContainer.style.color = 'red';
+      } else {
+        alert('Error: ' + error.message);
+      }
     }
   });
 }
