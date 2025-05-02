@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Community - Home</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <img src="assets/logo.png" alt="Logo" class="logo">
+    <nav>
+      <a href="login.html">Login</a>
+      <a href="signup.html" class="btn">Sign Up</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Welcome to My Community</h1>
+    <p>Watch videos, Like, and Earn Rewards!</p>
+    <a href="signup.html" class="cta">Get Started</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 My Community. All rights reserved.</p>
+  </footer>
+
+  <!-- Firebase Initialization Script -->
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDsowrOH7Q4358dTO8sU23myADmvhcpkWU",
+      authDomain: "mycommunity-df8d5.firebaseapp.com",
+      projectId: "mycommunity-df8d5",
+      storageBucket: "mycommunity-df8d5.firebasestorage.app",
+      messagingSenderId: "282348817039",
+      appId: "1:282348817039:web:2a83dea003d26bf20abefa"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+  </script>
+  <script src="scripts/auth.js"></script>
+</body>
+</html>

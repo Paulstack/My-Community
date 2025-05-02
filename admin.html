@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Upload Video</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container" id="passwordSection">
+    <h2>Enter Admin Password</h2>
+    <input type="password" id="adminPassword" placeholder="Enter password">
+    <button onclick="checkPassword()">Enter</button>
+    <p id="passStatus"></p>
+  </div>
+
+  <div class="container" id="uploadSection" style="display: none;">
+    <h1>Admin - Upload a New Video</h1>
+    <form id="videoForm">
+      <label for="videoTitle">Video Title:</label>
+      <input type="text" id="videoTitle" required><br><br>
+
+      <label for="videoLink">YouTube Link:</label>
+      <input type="url" id="videoLink" required><br><br>
+
+      <label for="videoDescription">Video Description:</label>
+      <textarea id="videoDescription" rows="4" required></textarea><br><br>
+
+      <button type="submit">Add Video</button>
+    </form>
+
+    <p id="status"></p>
+    <a href="videos.html">Go to Videos</a>
+  </div>
+
+  <script>
+    const correctPassword = "mysecret123"; // Change this to your own password
+
+    function checkPassword() {
+      const input = document.getElementById("adminPassword").value;
+      const status = document.getElementById("passStatus");
+      if (input === correctPassword) {
+        document.getElementById("passwordSection").style.display = "none";
+        document.getElementById("uploadSection").style.display = "block";
+      } else {
+        status.textContent = "Incorrect password!";
+        status.style.color = "red";
+      }
+    }
+
+    // Firebase configuration
+    const db = firebase.firestore();
+
+    // Handle form submission
+    const form = document.getElementById('videoForm');
+    const statusText = document.getElementById('status');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const title = document.getElementById('videoTitle').value;
+      const link = document.getElementById('videoLink').value;
+      const description = document.getElementById('videoDescription').value;
+
+      // Save to Firebase Firestore
+      db.collection('videos').add({
+        title: title,
+        link: link,
+        description: description
+      })
+      .then(() => {
+        statusText.textContent = "Video added successfully!";
+        statusText.style.color = "green";
+        form.reset();  // Reset the form
+      })
+      .catch(error => {
+        statusText.textContent = "Error: " + error.message;
+        statusText.style.color = "red";
+      });
+    });
+  </script>
+</body>
+</html>
