@@ -26,13 +26,7 @@ if (signupForm) {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       window.location.href = "dashboard.html"; // Redirect to dashboard
     } catch (error) {
-      const errorContainer = document.getElementById('error-container');
-      if (errorContainer) {
-        errorContainer.textContent = error.message;
-        errorContainer.style.color = 'red';
-      } else {
-        alert('Error: ' + error.message);
-      }
+      displayError(error.message); // Display error in the UI
     }
   });
 }
@@ -49,13 +43,7 @@ if (loginForm) {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       window.location.href = "dashboard.html"; // Redirect to dashboard
     } catch (error) {
-      const errorContainer = document.getElementById('error-container');
-      if (errorContainer) {
-        errorContainer.textContent = error.message;
-        errorContainer.style.color = 'red';
-      } else {
-        alert('Error: ' + error.message);
-      }
+      displayError(error.message); // Display error in the UI
     }
   });
 }
@@ -68,13 +56,7 @@ if (logoutBtn) {
       await signOut(auth);
       window.location.href = "login.html"; // Redirect to login
     } catch (error) {
-      const errorContainer = document.getElementById('error-container');
-      if (errorContainer) {
-        errorContainer.textContent = error.message;
-        errorContainer.style.color = 'red';
-      } else {
-        alert('Error: ' + error.message);
-      }
+      displayError(error.message); // Display error in the UI
     }
   });
 }
@@ -95,13 +77,7 @@ if (forgotPasswordLink) {
       await sendPasswordResetEmail(auth, email);
       alert('Password reset email sent! Check your inbox.');
     } catch (error) {
-      const errorContainer = document.getElementById('error-container');
-      if (errorContainer) {
-        errorContainer.textContent = error.message;
-        errorContainer.style.color = 'red';
-      } else {
-        alert('Error: ' + error.message);
-      }
+      displayError(error.message); // Display error in the UI
     }
   });
 }

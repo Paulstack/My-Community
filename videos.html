@@ -15,18 +15,24 @@
     <a href="dashboard.html">Back to Dashboard</a>
   </div>
 
-  <script>
+  <script type="module">
+    // Import Firestore functions
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+    // Initialize Firestore
+    const db = getFirestore();
+
     // Example videos list
     const videos = [
       {
         title: "Welcome to MyCommunity",
-        link: "https://youtu.be/wuGlBcKcsL4?si=qXzA2QBhGPbs4_mR",
-        description: "Watch video 1."
+        link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        description: "An introduction to our platform."
       },
       {
         title: "How to Earn",
-        link: "https://youtu.be/GYQSirOS7AY?si=-O6OcMAHEJzh1EoB",
-        description: "Watch video 2."
+        link: "https://www.youtube.com/watch?v=9bZkp7q19f0",
+        description: "Learn how rewards work."
       }
     ];
 
