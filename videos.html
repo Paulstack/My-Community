@@ -16,22 +16,23 @@
   </div>
 
   <script>
-    // Example videos list (you'll change this later)
+    // Example videos list
     const videos = [
       {
         title: "Welcome to MyCommunity",
-        link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-        description: "An introduction to our platform."
+        link: "https://youtu.be/wuGlBcKcsL4?si=qXzA2QBhGPbs4_mR",
+        description: "Watch video 1."
       },
       {
         title: "How to Earn",
-        link: "https://www.youtube.com/watch?v=9bZkp7q19f0",
-        description: "Learn how rewards work."
+        link: "https://youtu.be/GYQSirOS7AY?si=-O6OcMAHEJzh1EoB",
+        description: "Watch video 2."
       }
     ];
 
     const videoList = document.getElementById("videoList");
 
+    // Render videos and track clicks
     videos.forEach(video => {
       const div = document.createElement("div");
       div.classList.add("video-item");
@@ -39,12 +40,33 @@
       div.innerHTML = `
         <h3>${video.title}</h3>
         <p>${video.description}</p>
-        <a href="${video.link}" target="_blank">Watch Now</a>
+        <a href="${video.link}" target="_blank" class="video-link">Watch Now</a>
         <hr/>
       `;
 
+      // Add click event listener to track activity
+      const link = div.querySelector(".video-link");
+      link.addEventListener("click", () => {
+        trackVideoClick(video.title);
+      });
+
       videoList.appendChild(div);
     });
+
+    // Function to track video clicks in Firestore
+    async function trackVideoClick(videoTitle) {
+      try {
+        const userId = "currentUserId"; // Replace with the logged-in user's ID
+        await addDoc(collection(db, "videoClicks"), {
+          userId: userId,
+          videoTitle: videoTitle,
+          timestamp: new Date()
+        });
+        console.log(`Tracked click for video: ${videoTitle}`);
+      } catch (error) {
+        console.error("Error tracking video click: ", error);
+      }
+    }
   </script>
 </body>
 </html>
